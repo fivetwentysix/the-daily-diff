@@ -17,6 +17,7 @@ defmodule DailyDiffWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "repos", RepoController
   end
 
   # Other scopes may use custom stacks.

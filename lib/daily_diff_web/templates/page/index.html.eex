@@ -2,7 +2,9 @@
   const regex = new RegExp("((git|ssh|http(s){0,1})|(git@[\\w\\.]{1,}))(:(//){0,1})([\\w\\.@:/\\-~]{1,})(\\.git)(/){0,1}", "g");
   function validate() {
     const repositoryUrl = document.querySelector("#new_repository_url").value;
-    document.querySelector("#new_repository_submit").disabled = !regex.test(repositoryUrl);
+    if (regex.test(repositoryUrl)) {
+      document.querySelector("#new_repository_submit").disabled = false;
+    }
   }
 </script>
 
@@ -10,7 +12,9 @@
 
 <p>See code changes broken down by day. Analyze, reflect, measure and grow.</p>
 
-<form onKeyup="validate();">
+<%= render RepoView, "form.html", Map.put(assigns, :action, Routes.repo_path(@conn, :create)) %>
+
+<form onKeyup="validate();" onBlur="validate();">
   <input id="new_repository_url" placeholder="new repository git url">
   <button id="new_repository_submit" disabled>+ Add Repository</button>
 </form>

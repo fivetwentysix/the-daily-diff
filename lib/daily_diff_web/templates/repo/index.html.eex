@@ -1,0 +1,26 @@
+<h1>Listing Repos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Url</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for repo <- @repos do %>
+    <tr>
+      <td><%= repo.url %></td>
+
+      <td>
+        <%= link "Show", to: Routes.repo_path(@conn, :show, repo) %>
+        <%= link "Edit", to: Routes.repo_path(@conn, :edit, repo) %>
+        <%= link "Delete", to: Routes.repo_path(@conn, :delete, repo), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Repo", to: Routes.repo_path(@conn, :new) %></span>

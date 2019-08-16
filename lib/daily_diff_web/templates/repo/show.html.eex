@@ -1,0 +1,13 @@
+<h1>Show Repo</h1>
+
+<ul>
+
+  <li>
+    <strong>Url:</strong>
+    <%= @repo.url %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.repo_path(@conn, :edit, @repo) %></span>
+<span><%= link "Back", to: Routes.repo_path(@conn, :index) %></span>
